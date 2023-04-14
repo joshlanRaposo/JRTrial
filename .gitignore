@@ -34,3 +34,6 @@ build/
 
 ### logs ###
 *.log
+
+### JSON FILES ###
+*.json
