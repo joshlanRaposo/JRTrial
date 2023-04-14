@@ -1,6 +1,6 @@
 package com.example.jrtrail.repository;
 
-import com.example.jrtrail.model.SparkIncidents;
+import com.example.jrtrail.model.sparkincident.SparkIncidents;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Repository;
 

@@ -1,6 +1,6 @@
 package com.example.jrtrail.service;
 
-import com.example.jrtrail.model.SparkIncidents;
+import com.example.jrtrail.model.sparkincident.SparkIncidents;
 import com.example.jrtrail.repository.SparkIncidentsRepository;
 import org.springframework.stereotype.Service;
 

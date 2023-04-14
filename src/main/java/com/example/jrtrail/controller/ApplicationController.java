@@ -1,12 +1,11 @@
 package com.example.jrtrail.controller;
 
 import com.example.jrtrail.config.DynamoDBConfig;
-import com.example.jrtrail.model.Application;
-import com.example.jrtrail.model.DownstreamObjectObject;
+import com.example.jrtrail.model.application.Application;
 import com.example.jrtrail.service.ApplicationService;
+import com.example.jrtrail.service.DownstreamService;
 import com.example.jrtrail.service.SparkIncidentsService;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,19 +13,20 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.reactive.function.client.WebClient;
 
-import java.util.Objects;
 import java.util.Set;
 
 @Controller
 public class ApplicationController {
     private final ApplicationService applicationService;
     private final SparkIncidentsService sparkIncidentsService;
+    private final DownstreamService downstreamService;
 
-    public ApplicationController(ApplicationService applicationService, SparkIncidentsService sparkIncidentsService) {
+    public ApplicationController(ApplicationService applicationService, SparkIncidentsService sparkIncidentsService,
+                                 DownstreamService downstreamService) {
         this.applicationService = applicationService;
         this.sparkIncidentsService = sparkIncidentsService;
+        this.downstreamService = downstreamService;
     }
 
     @GetMapping("/{id}")
@@ -52,7 +52,8 @@ public class ApplicationController {
             RestTemplate restTemplate = new RestTemplate();
 
             return ResponseEntity.ok(restTemplate.getForObject(
-                    "https://cybertron-int-healthcheck.dev.ce.eu-central-1-aws.npottdc.sky/userstore/liveness_status",
+                    "https://cybertron-int-healthcheck.dev.ce.eu-central-1-aws.npottdc" +
+                            ".sky/userstore/liveness_status",
                     Object.class));
 
         } catch (Exception e) {
@@ -62,17 +63,17 @@ public class ApplicationController {
 
     @GetMapping("/web")
     public ResponseEntity<Object> getUsingWebClient() {
-        WebClient client = WebClient.create("https://cybertron-int-healthcheck.dev.ce.eu-central-1-aws.npottdc.sky/sessions");
-
         try {
-            return ResponseEntity.ok(Objects.requireNonNull(client.get()
-                    .uri("/liveness_status")
-                    .accept(MediaType.APPLICATION_JSON)
-                    .retrieve()
-                    .toEntity(DownstreamObjectObject.class).block()).getBody()
-            );
+            return ResponseEntity.ok(downstreamService.findAll());
+        } catch (Exception e) {
+            return new ResponseEntity<>("Error!, Please try again", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
-
+    @GetMapping("/webDO")
+    public ResponseEntity<Object> getUsingWebClientDO() {
+        try {
+            return ResponseEntity.ok(downstreamService.findAllDO());
         } catch (Exception e) {
             return new ResponseEntity<>("Error!, Please try again", HttpStatus.INTERNAL_SERVER_ERROR);
         }

@@ -1,13 +1,10 @@
-package com.example.jrtrail.model;
+package com.example.jrtrail.model.sparkincident;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.util.HashMap;
-import java.util.Map;
 
 @Getter
 @Setter
@@ -19,7 +16,8 @@ public class SparkIncidentsData {
     @JsonProperty("short_description")
     private String shortDescription;
     @JsonProperty("assignment_group")
-    private Map<String, String> assignmentGroup = new HashMap<>();
+//    private Map<String, String> assignmentGroup = new HashMap<>();
+    private AssignmentGroup assignmentGroup;
     @JsonProperty("incident_state")
     private String incidentState;
     @JsonProperty("urgency")

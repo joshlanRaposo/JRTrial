@@ -3,7 +3,7 @@ package com.example.jrtrail.config;
 import com.amazonaws.services.dynamodbv2.model.CreateTableRequest;
 import com.amazonaws.services.dynamodbv2.model.ProvisionedThroughput;
 import com.amazonaws.services.dynamodbv2.util.TableUtils;
-import com.example.jrtrail.model.Application;
+import com.example.jrtrail.model.application.Application;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 

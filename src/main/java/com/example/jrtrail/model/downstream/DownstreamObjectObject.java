@@ -1,4 +1,4 @@
-package com.example.jrtrail.model;
+package com.example.jrtrail.model.downstream;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
@@ -13,7 +13,7 @@ import java.util.Map;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class DownstreamObject {
+public class DownstreamObjectObject {
     @JsonProperty("downstream-services")
-    private Map<String, String> downstreamService = new HashMap<>();
+    private Map<String, Map<String, String>> downstreamService = new HashMap<>();
 }

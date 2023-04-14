@@ -1,7 +1,7 @@
 package com.example.jrtrail.service;
 
-import com.example.jrtrail.model.Application;
-import com.example.jrtrail.model.Modules;
+import com.example.jrtrail.model.application.Application;
+import com.example.jrtrail.model.module.Modules;
 import com.example.jrtrail.repository.ApplicationRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

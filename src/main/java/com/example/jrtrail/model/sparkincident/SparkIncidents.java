@@ -1,4 +1,4 @@
-package com.example.jrtrail.model;
+package com.example.jrtrail.model.sparkincident;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;

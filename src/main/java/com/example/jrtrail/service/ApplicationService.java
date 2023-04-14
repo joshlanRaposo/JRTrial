@@ -1,6 +1,6 @@
 package com.example.jrtrail.service;
 
-import com.example.jrtrail.model.Application;
+import com.example.jrtrail.model.application.Application;
 
 import java.util.Set;
 
