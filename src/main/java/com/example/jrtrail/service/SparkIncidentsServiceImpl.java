@@ -1,8 +1,10 @@
 package com.example.jrtrail.service;
 
-import com.example.jrtrail.model.sparkincident.SparkIncidents;
+import com.example.jrtrail.model.sparkincident.SparkIncidentsData;
 import com.example.jrtrail.repository.SparkIncidentsRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class SparkIncidentsServiceImpl implements SparkIncidentsService {
@@ -14,7 +16,7 @@ public class SparkIncidentsServiceImpl implements SparkIncidentsService {
     }
 
     @Override
-    public SparkIncidents findAll() {
+    public List<SparkIncidentsData> findAll() {
         return sparkIncidentsRepository.findAll();
     }
 }

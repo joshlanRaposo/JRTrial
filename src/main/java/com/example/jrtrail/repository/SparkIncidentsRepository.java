@@ -1,21 +1,31 @@
 package com.example.jrtrail.repository;
 
 import com.example.jrtrail.model.sparkincident.SparkIncidents;
+import com.example.jrtrail.model.sparkincident.SparkIncidentsData;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Repository;
 
-import java.io.File;
 import java.io.IOException;
+import java.util.Collections;
+import java.util.List;
 
 @Repository
 public class SparkIncidentsRepository {
 
-    public SparkIncidents findAll() {
+    @Value("classpath:data.json")
+    Resource resourceFile;
+
+    public List<SparkIncidentsData> findAll() {
         ObjectMapper mapper = new ObjectMapper();
         try {
-            return mapper.readValue(new File("src/main/resources/data.json"), SparkIncidents.class);
+            SparkIncidents sparkIncidents = mapper.readValue(resourceFile.getFile(),
+                                                             SparkIncidents.class);
+            return sparkIncidents.getResults();
+
         } catch (IOException e) {
-            throw new RuntimeException(e.getMessage());
+            return Collections.emptyList();
         }
     }
 }

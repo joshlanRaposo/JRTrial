@@ -2,6 +2,7 @@ package com.example.jrtrail.controller;
 
 import com.example.jrtrail.config.DynamoDBConfig;
 import com.example.jrtrail.model.application.Application;
+import com.example.jrtrail.model.sparkincident.SparkIncidentsData;
 import com.example.jrtrail.service.ApplicationService;
 import com.example.jrtrail.service.DownstreamService;
 import com.example.jrtrail.service.SparkIncidentsService;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Set;
 
 @Controller
@@ -80,11 +83,11 @@ public class ApplicationController {
     }
 
     @GetMapping("/spark")
-    public ResponseEntity<Object> getSparkData() {
+    public ResponseEntity<List<SparkIncidentsData>> getSparkData() {
         try {
             return ResponseEntity.ok(sparkIncidentsService.findAll());
         } catch (Exception e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(Collections.emptyList(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
     }

@@ -16,7 +16,6 @@ public class SparkIncidentsData {
     @JsonProperty("short_description")
     private String shortDescription;
     @JsonProperty("assignment_group")
-//    private Map<String, String> assignmentGroup = new HashMap<>();
     private AssignmentGroup assignmentGroup;
     @JsonProperty("incident_state")
     private String incidentState;
