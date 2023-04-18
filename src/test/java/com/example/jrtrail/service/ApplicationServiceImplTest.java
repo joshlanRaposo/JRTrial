@@ -78,7 +78,7 @@ class ApplicationServiceImplTest {
     }
 
     @Test
-    void finalAll() {
+    void findAll() {
         Set<Application> applicationList = new HashSet<>();
         applicationList.add(applicationToSave);
 

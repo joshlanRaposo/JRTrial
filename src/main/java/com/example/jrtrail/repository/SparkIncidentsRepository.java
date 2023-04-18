@@ -1,7 +1,7 @@
 package com.example.jrtrail.repository;
 
-import com.example.jrtrail.model.sparkincident.SparkIncidents;
 import com.example.jrtrail.model.sparkincident.SparkIncidentsData;
+import com.example.jrtrail.model.sparkincident.SparkIncidentsList;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
@@ -20,9 +20,9 @@ public class SparkIncidentsRepository {
     public List<SparkIncidentsData> findAll() {
         ObjectMapper mapper = new ObjectMapper();
         try {
-            SparkIncidents sparkIncidents = mapper.readValue(resourceFile.getFile(),
-                                                             SparkIncidents.class);
-            return sparkIncidents.getResults();
+            SparkIncidentsList sparkIncidentsList = mapper.readValue(resourceFile.getFile(),
+                                                                     SparkIncidentsList.class);
+            return sparkIncidentsList.getResults();
 
         } catch (IOException e) {
             return Collections.emptyList();

@@ -13,7 +13,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class SparkIncidents {
+public class SparkIncidentsList {
     @JsonProperty("result")
     private List<SparkIncidentsData> results = new ArrayList<>();
 }
