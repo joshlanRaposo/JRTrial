@@ -15,8 +15,8 @@ public class SparkIncidentsData {
     private String number;
     @JsonProperty("short_description")
     private String shortDescription;
-    //    @JsonProperty("assignment_group")
-//    private AssignmentGroup assignmentGroup;
+    @JsonProperty("assignment_group")
+    private AssignmentGroup assignmentGroup;
     @JsonProperty("incident_state")
     private String incidentState;
     @JsonProperty("urgency")

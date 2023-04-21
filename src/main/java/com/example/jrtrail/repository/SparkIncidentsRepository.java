@@ -22,9 +22,11 @@ public class SparkIncidentsRepository {
         try {
             SparkIncidentsList sparkIncidentsList = mapper.readValue(resourceFile.getFile(),
                                                                      SparkIncidentsList.class);
-            return sparkIncidentsList.getResults();
+            
+            return sparkIncidentsList.getResult();
 
         } catch (IOException e) {
+            System.out.println(e.getMessage());
             return Collections.emptyList();
         }
     }

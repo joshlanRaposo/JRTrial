@@ -13,7 +13,7 @@ import java.util.Map;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Downstream {
+public class LivenessStatus {
     @JsonProperty("downstream-services")
     private Map<String, String> downstreamService = new HashMap<>();
 }

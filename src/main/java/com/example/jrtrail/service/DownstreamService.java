@@ -1,10 +1,10 @@
 package com.example.jrtrail.service;
 
-import com.example.jrtrail.model.downstream.Downstream;
-import com.example.jrtrail.model.downstream.DownstreamObjectObject;
+import com.example.jrtrail.model.downstream.LivenessNestedStatus;
+import com.example.jrtrail.model.downstream.LivenessStatus;
 
 public interface DownstreamService {
-    Downstream findAll();
+    LivenessStatus findAll();
 
-    DownstreamObjectObject findAllDO();
+    LivenessNestedStatus findAllDO();
 }

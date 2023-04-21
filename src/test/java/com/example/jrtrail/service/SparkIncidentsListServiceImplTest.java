@@ -1,7 +1,7 @@
 package com.example.jrtrail.service;
 
+import com.example.jrtrail.model.sparkincident.AssignmentGroup;
 import com.example.jrtrail.model.sparkincident.SparkIncidentsData;
-import com.example.jrtrail.model.sparkincident.SparkIncidentsList;
 import com.example.jrtrail.repository.SparkIncidentsRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,37 +10,52 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class SparkIncidentsListServiceImplTest {
 
     @Mock
     private SparkIncidentsRepository repository;
-    private SparkIncidentsList array;
     @InjectMocks
     private SparkIncidentsServiceImpl service;
 
+    private List<SparkIncidentsData> sparks;
+
     @BeforeEach
     void setUp() {
-        List<SparkIncidentsData> sparks = new ArrayList<>();
-        array = new SparkIncidentsList();
-        SparkIncidentsData incident = new SparkIncidentsData("123123", "test", "test", "test", "test", "test");
 
-        sparks.add(incident);
+        AssignmentGroup group = new AssignmentGroup("a", "b");
 
-        array.setResults(sparks);
+        SparkIncidentsData incident = new SparkIncidentsData("123123", "test", group, "test", "test", "test", "test");
+
+        sparks = List.of(incident);
     }
 
     @Test
     void getIncidentsTest() {
-        when(repository.findAll()).thenReturn(array.getResults());
+        when(repository.findAll()).thenReturn(sparks);
         assertEquals(1, service.findAll().size());
-        assertFalse(service.findAll().isEmpty());
+
+        verify(repository, times(1)).findAll();
+    }
+
+    @Test
+    void getIncidentsNotNull() {
+        when(repository.findAll()).thenReturn(sparks);
         assertNotNull(service.findAll());
+
+        verify(repository, times(1)).findAll();
+    }
+
+    @Test
+    void getIncidentsIsNotEmpty() {
+        when(repository.findAll()).thenReturn(sparks);
+        assertFalse(service.findAll().isEmpty());
+        verify(repository, times(1)).findAll();
+
     }
 }

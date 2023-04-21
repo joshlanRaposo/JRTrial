@@ -6,14 +6,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.HashMap;
 import java.util.Map;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class DownstreamObjectObject {
+public class LivenessNestedStatus {
     @JsonProperty("downstream-services")
-    private Map<String, Map<String, String>> downstreamService = new HashMap<>();
+    private Map<String, Map<String, String>> downstreamService;
 }
