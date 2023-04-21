@@ -11,8 +11,8 @@ import java.util.Objects;
 @Repository
 public class DownstreamRepository {
 
-    public LivenessStatus findAll(WebClient webClient) {
-        return Objects
+    public LivenessStatus getStatus(WebClient webClient) {
+        LivenessStatus livenessStatus = Objects
                 .requireNonNull(webClient.get()
                                         .uri("/liveness_status")
                                         .accept(MediaType.APPLICATION_JSON)
@@ -20,7 +20,9 @@ public class DownstreamRepository {
                                         .toEntity(LivenessStatus.class).block()
                                ).getBody();
 
+        return livenessStatus;
     }
+
 
     public LivenessNestedStatus findAllDO(WebClient webClient) {
         return Objects
@@ -32,4 +34,31 @@ public class DownstreamRepository {
                                ).getBody();
 
     }
+
+/*    public LivenessStatus getLivenessStatusFromEndpoint() {
+        WebClient webClient =
+                WebClient.create("https://cybertron-int-healthcheck.dev.ce.eu-central-1-aws.npottdc.sky/userstore");
+
+        LivenessStatus livenessStatus = Objects.requireNonNull(webClient.get()
+                                                                       .uri("/liveness_status")
+                                                                       .accept(MediaType.APPLICATION_JSON)
+                                                                       .retrieve()
+                                                                       .toEntity(LivenessStatus.class).block()
+                                                              ).getBody();
+
+        Map<String, LivenessStatusNew> map = new HashMap<>();
+
+        for (Map.Entry<String, String> i : livenessStatus.getDownstreamService().entrySet()) {
+            System.out.println("Key -> " + i.getKey() + " Value -> " + i.getValue());
+        }
+
+
+        return Objects
+                .requireNonNull(webClient.get()
+                                        .uri("/liveness_status")
+                                        .accept(MediaType.APPLICATION_JSON)
+                                        .retrieve()
+                                        .toEntity(LivenessStatus.class).block()
+                               ).getBody();
+    }*/
 }
